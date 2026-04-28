@@ -1,0 +1,97 @@
+<!--pages/index/index.wxml-->
+<view class="container">
+
+  <!-- ======== 蓝牙状态区 ======== -->
+  <view class="section ble-section">
+    <view class="section-title">蓝牙连接</view>
+
+    <!-- 状态指示 -->
+    <view class="ble-status">
+      <view class="status-dot {{bleState === 'connected' ? 'dot-green' : (bleState === 'scanning' || bleState === 'connecting' ? 'dot-yellow' : 'dot-red')}}"></view>
+      <text class="status-text">{{bleStateText}}</text>
+    </view>
+
+    <!-- 搜索进度条 -->
+    <view wx:if="{{bleState === 'scanning' || bleState === 'found'}}" class="progress-bar-wrap">
+      <view class="progress-bar" style="width: {{scanProgress}}%"></view>
+    </view>
+
+    <!-- 设备列表 -->
+    <view wx:if="{{devices.length > 0 && bleState !== 'connected' && bleState !== 'connecting'}}" class="device-list">
+      <view class="device-list-title">点击设备进行连接:</view>
+      <scroll-view scroll-y class="device-scroll">
+        <view class="device-item" wx:for="{{devices}}" wx:key="deviceId"
+              bindtap="onTapDevice" data-device="{{item}}">
+          <view class="device-info">
+            <text class="device-name">{{item.name || item.localName || '未知设备'}}</text>
+            <text class="device-id">{{item.deviceId}}</text>
+          </view>
+          <view class="device-right">
+            <view class="rssi-bar">
+              <view class="rssi-level" style="width: {{item.RSSI > -50 ? 100 : (item.RSSI > -65 ? 75 : (item.RSSI > -80 ? 50 : 25))}}%"></view>
+            </view>
+            <text class="device-rssi">{{item.RSSI}}dBm</text>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+
+    <!-- 操作按钮 -->
+    <view class="ble-actions">
+      <button wx:if="{{bleState === 'idle'}}" class="btn btn-primary" bindtap="onTapConnect">搜索蓝牙设备</button>
+      <button wx:if="{{bleState === 'scanning' || bleState === 'found'}}" class="btn btn-warn" bindtap="onTapStopScan">停止搜索</button>
+      <button wx:if="{{bleState === 'failed' || bleState === 'connected'}}" class="btn btn-warn" bindtap="onTapReconnect">重新搜索</button>
+    </view>
+  </view>
+
+  <!-- ======== 摇杆控制区 ======== -->
+  <view class="section control-section">
+    <view class="section-title">方向控制</view>
+    <view class="joystick-wrap">
+      <view class="joystick-base" id="joystickBase"
+            bindtouchstart="onJoyStart"
+            bindtouchmove="onJoyMove"
+            bindtouchend="onJoyEnd"
+            bindtouchcancel="onJoyEnd">
+        <!-- 十字参考线 -->
+        <view class="joystick-crosshair-h"></view>
+        <view class="joystick-crosshair-v"></view>
+        <!-- 摇杆手柄 -->
+        <view class="joystick-thumb" style="left:{{joyThumbX}}px; top:{{joyThumbY}}px;"></view>
+      </view>
+      <view class="joystick-info">
+        <text class="joystick-label">X: {{joyX}}  Y: {{joyY}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- ======== 参数设置区 ======== -->
+  <view class="section param-section">
+    <view class="section-header">
+      <view class="section-title">参数设置</view>
+      <button class="btn btn-small btn-primary" bindtap="onSendAllParams">全部下发</button>
+    </view>
+
+    <view class="param-list">
+      <view class="param-item" wx:for="{{params}}" wx:key="key">
+        <view class="param-top">
+          <text class="param-label">{{item.label}}</text>
+          <text class="param-value">{{item.value}}</text>
+        </view>
+        <slider class="param-slider"
+                min="{{item.min}}" max="{{item.max}}" step="{{item.step}}"
+                value="{{item.value}}"
+                activeColor="#4fc3f7"
+                backgroundColor="#2a2a3e"
+                block-size="20"
+                data-idx="{{index}}"
+                bindchange="onParamChange" />
+        <view class="param-bottom">
+          <text class="param-range">{{item.min}} ~ {{item.max}}</text>
+          <button class="btn btn-tiny btn-send" data-idx="{{index}}" bindtap="onParamConfirm">发送</button>
+        </view>
+      </view>
+    </view>
+  </view>
+
+</view>

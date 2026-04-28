@@ -1,0 +1,280 @@
+/* pages/index/index.wxss */
+
+.container {
+  padding: 20rpx 24rpx 60rpx;
+}
+
+/* ---- 通用 ---- */
+.section {
+  background: #1a1a2e;
+  border-radius: 20rpx;
+  padding: 28rpx;
+  margin-bottom: 24rpx;
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 20rpx;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+/* ---- 按钮 ---- */
+.btn {
+  display: inline-block;
+  border: none;
+  border-radius: 12rpx;
+  font-size: 28rpx;
+  padding: 14rpx 36rpx;
+  color: #fff;
+  line-height: 1.4;
+}
+
+.btn::after { border: none; }
+
+.btn-primary { background: #4fc3f7; color: #0f0f1a; }
+.btn-warn    { background: #ff7043; }
+.btn-small   { font-size: 24rpx; padding: 10rpx 24rpx; }
+.btn-tiny    { font-size: 22rpx; padding: 6rpx 18rpx; background: #4fc3f7; color: #0f0f1a; border-radius: 8rpx; }
+.btn-send    { min-width: auto; }
+
+/* ---- 蓝牙状态 ---- */
+.ble-status {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16rpx;
+}
+
+.status-dot {
+  width: 20rpx;
+  height: 20rpx;
+  border-radius: 50%;
+  margin-right: 14rpx;
+  flex-shrink: 0;
+}
+
+.dot-green  { background: #66bb6a; box-shadow: 0 0 8rpx #66bb6a; }
+.dot-yellow { background: #fdd835; box-shadow: 0 0 8rpx #fdd835; }
+.dot-red    { background: #ef5350; box-shadow: 0 0 8rpx #ef5350; }
+
+.status-text {
+  font-size: 28rpx;
+  color: #b0bec5;
+}
+
+/* 进度条 */
+.progress-bar-wrap {
+  height: 8rpx;
+  background: #2a2a3e;
+  border-radius: 4rpx;
+  overflow: hidden;
+  margin-bottom: 20rpx;
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #4fc3f7, #81d4fa);
+  border-radius: 4rpx;
+  transition: width 0.4s ease;
+}
+
+/* 设备列表 */
+.device-list {
+  margin-bottom: 16rpx;
+}
+
+.device-list-title {
+  font-size: 24rpx;
+  color: #78909c;
+  margin-bottom: 12rpx;
+}
+
+.device-scroll {
+  max-height: 500rpx;
+}
+
+.device-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx 20rpx;
+  background: #16213e;
+  border-radius: 12rpx;
+  margin-bottom: 10rpx;
+}
+
+.device-item:active {
+  background: #1f3060;
+}
+
+.device-info {
+  flex: 1;
+  overflow: hidden;
+}
+
+.device-name {
+  font-size: 28rpx;
+  color: #e0e0e0;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.device-id {
+  font-size: 20rpx;
+  color: #546e7a;
+  display: block;
+  margin-top: 4rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.device-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-left: 16rpx;
+  flex-shrink: 0;
+}
+
+.rssi-bar {
+  width: 60rpx;
+  height: 8rpx;
+  background: #2a2a3e;
+  border-radius: 4rpx;
+  overflow: hidden;
+  margin-bottom: 6rpx;
+}
+
+.rssi-level {
+  height: 100%;
+  background: #66bb6a;
+  border-radius: 4rpx;
+}
+
+.device-rssi {
+  font-size: 20rpx;
+  color: #78909c;
+}
+
+.ble-actions {
+  display: flex;
+  justify-content: center;
+  gap: 20rpx;
+}
+
+/* ---- 摇杆控制 ---- */
+.joystick-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.joystick-base {
+  position: relative;
+  width: 300rpx;
+  height: 300rpx;
+  border-radius: 50%;
+  background: radial-gradient(circle, #16213e 0%, #0f0f1a 100%);
+  border: 4rpx solid #2a3a5e;
+  overflow: hidden;
+}
+
+.joystick-crosshair-h {
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: rgba(79, 195, 247, 0.15);
+  transform: translateY(-0.5px);
+}
+
+.joystick-crosshair-v {
+  position: absolute;
+  left: 50%;
+  top: 10%;
+  bottom: 10%;
+  width: 1px;
+  background: rgba(79, 195, 247, 0.15);
+  transform: translateX(-0.5px);
+}
+
+.joystick-thumb {
+  position: absolute;
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #81d4fa, #4fc3f7, #039be5);
+  box-shadow: 0 0 20rpx rgba(79, 195, 247, 0.5);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.joystick-info {
+  margin-top: 16rpx;
+  text-align: center;
+}
+
+.joystick-label {
+  font-size: 24rpx;
+  color: #78909c;
+  font-family: monospace;
+}
+
+/* ---- 参数设置 ---- */
+.param-list {
+  /* nothing */
+}
+
+.param-item {
+  background: #16213e;
+  border-radius: 16rpx;
+  padding: 20rpx 24rpx;
+  margin-bottom: 16rpx;
+}
+
+.param-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8rpx;
+}
+
+.param-label {
+  font-size: 26rpx;
+  color: #b0bec5;
+}
+
+.param-value {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #4fc3f7;
+  min-width: 100rpx;
+  text-align: right;
+}
+
+.param-slider {
+  margin: 0 -10rpx;
+}
+
+.param-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 4rpx;
+}
+
+.param-range {
+  font-size: 22rpx;
+  color: #546e7a;
+}
