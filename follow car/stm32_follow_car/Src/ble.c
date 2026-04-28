@@ -53,17 +53,49 @@ static void ble_send_frame(uint8_t cmd, const uint8_t *data, uint8_t len)
 /* 根据索引设置参数 */
 static void set_param(uint8_t index, float value)
 {
-    if (index >= BLE_PARAM_COUNT) return;
-    float *params = (float *)&g_car_params;
-    params[index] = value;
+    switch (index) {
+    case 0:  g_car_params.follow_distance_m = value; break;
+    case 1:  g_car_params.obstacle_dist_cm = value; break;
+    case 2:  g_car_params.lidar_obstacle_dist_mm = value; break;
+    case 3:  g_car_params.motor_base_speed = value; break;
+    case 4:  g_car_params.motor_turn_speed = value; break;
+    case 5:  g_car_params.motor_slow_speed = value; break;
+    case 6:  g_car_params.uwb_timeout_ms = value; break;
+    case 7:  g_car_params.ultrasonic_poll_ms = value; break;
+    case 8:  g_car_params.uwb_angle_tolerance_deg = value; break;
+    case 9:  g_car_params.emergency_stop_dist_cm = value; break;
+    case 10: g_car_params.pid_dist_kp = value; break;
+    case 11: g_car_params.pid_dist_ki = value; break;
+    case 12: g_car_params.pid_dist_kd = value; break;
+    case 13: g_car_params.pid_angle_kp = value; break;
+    case 14: g_car_params.pid_angle_ki = value; break;
+    case 15: g_car_params.pid_angle_kd = value; break;
+    default: break;
+    }
 }
 
 /* 根据索引读取参数 */
 static float get_param(uint8_t index)
 {
-    if (index >= BLE_PARAM_COUNT) return 0.0f;
-    float *params = (float *)&g_car_params;
-    return params[index];
+    switch (index) {
+    case 0:  return g_car_params.follow_distance_m;
+    case 1:  return g_car_params.obstacle_dist_cm;
+    case 2:  return g_car_params.lidar_obstacle_dist_mm;
+    case 3:  return g_car_params.motor_base_speed;
+    case 4:  return g_car_params.motor_turn_speed;
+    case 5:  return g_car_params.motor_slow_speed;
+    case 6:  return g_car_params.uwb_timeout_ms;
+    case 7:  return g_car_params.ultrasonic_poll_ms;
+    case 8:  return g_car_params.uwb_angle_tolerance_deg;
+    case 9:  return g_car_params.emergency_stop_dist_cm;
+    case 10: return g_car_params.pid_dist_kp;
+    case 11: return g_car_params.pid_dist_ki;
+    case 12: return g_car_params.pid_dist_kd;
+    case 13: return g_car_params.pid_angle_kp;
+    case 14: return g_car_params.pid_angle_ki;
+    case 15: return g_car_params.pid_angle_kd;
+    default: return 0.0f;
+    }
 }
 
 /* ========== 公开接口 ========== */
