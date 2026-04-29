@@ -3,6 +3,8 @@ const ble = require('../../utils/ble.js');
 
 Page({
   data: {
+    activeTab: 'control', // control | params
+
     // ---- 蓝牙状态 ----
     bleState: 'idle',        // idle | scanning | found | connecting | connected | failed
     bleStateText: '未连接',
@@ -19,7 +21,15 @@ Page({
       { key: 'MOTOR_TURN_SPEED',       label: '转弯外侧轮速度',     value: 700,  min: 0,   max: 999,  step: 10,  index: 4 },
       { key: 'MOTOR_SLOW_SPEED',       label: '转弯内侧轮速度',     value: 200,  min: 0,   max: 999,  step: 10,  index: 5 },
       { key: 'UWB_TIMEOUT_MS',         label: 'UWB数据超时 (ms)',    value: 500,  min: 100, max: 2000, step: 50,  index: 6 },
-      { key: 'ULTRASONIC_POLL_MS',     label: '超声波轮询间隔 (ms)', value: 50,   min: 10,  max: 500,  step: 10,  index: 7 }
+      { key: 'ULTRASONIC_POLL_MS',     label: '超声波轮询间隔 (ms)', value: 50,   min: 10,  max: 500,  step: 10,  index: 7 },
+      { key: 'UWB_ANGLE_TOLERANCE_DEG', label: 'UWB角度容许值 (°)',  value: 20,   min: 0,   max: 90,   step: 1,   index: 8 },
+      { key: 'EMERGENCY_STOP_DIST_CM',  label: '紧急停车距离 (cm)',   value: 15,   min: 5,   max: 80,   step: 1,   index: 9 },
+      { key: 'PID_DIST_KP',             label: '距离PID Kp',         value: 300,  min: 0,   max: 1000, step: 1,   index: 10 },
+      { key: 'PID_DIST_KI',             label: '距离PID Ki',         value: 5,    min: 0,   max: 100,  step: 0.1, index: 11 },
+      { key: 'PID_DIST_KD',             label: '距离PID Kd',         value: 80,   min: 0,   max: 500,  step: 1,   index: 12 },
+      { key: 'PID_ANGLE_KP',            label: '角度PID Kp',         value: 4,    min: 0,   max: 50,   step: 0.1, index: 13 },
+      { key: 'PID_ANGLE_KI',            label: '角度PID Ki',         value: 0.3,  min: 0,   max: 10,   step: 0.1, index: 14 },
+      { key: 'PID_ANGLE_KD',            label: '角度PID Kd',         value: 1.5,  min: 0,   max: 50,   step: 0.1, index: 15 }
     ],
 
     // ---- 控制 ----
@@ -42,6 +52,17 @@ Page({
   onUnload() {
     this._closeBLE();
   },
+
+  onSwitchTab(e) {
+    const tab = e.currentTarget.dataset.tab;
+    if (!tab || tab === this.data.activeTab) return;
+    this.setData({ activeTab: tab });
+    if (tab === 'control') {
+      setTimeout(() => this._initJoystick(), 50);
+    }
+  },
+
+  noop() {},
 
   // =============== 蓝牙流程 ===============
   onTapConnect() {
@@ -214,7 +235,7 @@ Page({
           s.uuid.toUpperCase().indexOf('FFE0') >= 0
         );
         if (!svc) {
-          this.setData({ bleState: 'failed', bleStateText: '未找到JDY-31服务' });
+          this.setData({ bleState: 'failed', bleStateText: '未找到JDY-33服务' });
           return;
         }
         this._serviceId = svc.uuid;
@@ -328,6 +349,14 @@ Page({
 
   // =============== 参数修改 ===============
   onParamChange(e) {
+    const idx = e.currentTarget.dataset.idx;
+    const val = parseFloat(e.detail.value);
+    const params = this.data.params.slice();
+    params[idx].value = val;
+    this.setData({ params });
+  },
+
+  onParamChanging(e) {
     const idx = e.currentTarget.dataset.idx;
     const val = parseFloat(e.detail.value);
     const params = this.data.params.slice();
