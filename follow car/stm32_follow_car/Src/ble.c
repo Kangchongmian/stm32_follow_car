@@ -70,6 +70,7 @@ static void set_param(uint8_t index, float value)
     case 13: g_car_params.pid_angle_kp = value; break;
     case 14: g_car_params.pid_angle_ki = value; break;
     case 15: g_car_params.pid_angle_kd = value; break;
+    case 16: g_car_params.max_follow_speed = value; break;
     default: break;
     }
 }
@@ -94,6 +95,7 @@ static float get_param(uint8_t index)
     case 13: return g_car_params.pid_angle_kp;
     case 14: return g_car_params.pid_angle_ki;
     case 15: return g_car_params.pid_angle_kd;
+    case 16: return g_car_params.max_follow_speed;
     default: return 0.0f;
     }
 }

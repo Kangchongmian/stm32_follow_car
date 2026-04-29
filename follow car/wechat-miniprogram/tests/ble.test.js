@@ -35,7 +35,8 @@ function toArray(buf) {
 (function testParamIndexMatchesStm32Count() {
   assert.strictEqual(ble.PARAM_INDEX.FOLLOW_DISTANCE_M, 0);
   assert.strictEqual(ble.PARAM_INDEX.PID_ANGLE_KD, 15);
-  assert.strictEqual(Object.keys(ble.PARAM_INDEX).length, 16);
+  assert.strictEqual(ble.PARAM_INDEX.MAX_FOLLOW_SPEED, 16);
+  assert.strictEqual(Object.keys(ble.PARAM_INDEX).length, 17);
 })();
 
 console.log('ble tests passed');

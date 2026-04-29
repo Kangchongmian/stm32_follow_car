@@ -29,7 +29,8 @@ Page({
       { key: 'PID_DIST_KD',             label: '距离PID Kd',         value: 80,   min: 0,   max: 500,  step: 1,   index: 12 },
       { key: 'PID_ANGLE_KP',            label: '角度PID Kp',         value: 4,    min: 0,   max: 50,   step: 0.1, index: 13 },
       { key: 'PID_ANGLE_KI',            label: '角度PID Ki',         value: 0.3,  min: 0,   max: 10,   step: 0.1, index: 14 },
-      { key: 'PID_ANGLE_KD',            label: '角度PID Kd',         value: 1.5,  min: 0,   max: 50,   step: 0.1, index: 15 }
+      { key: 'PID_ANGLE_KD',            label: '角度PID Kd',         value: 1.5,  min: 0,   max: 50,   step: 0.1, index: 15 },
+      { key: 'MAX_FOLLOW_SPEED',        label: '最大跟随速度',         value: 500,  min: 0,   max: 666,  step: 1,   index: 16 }
     ],
 
     // ---- 控制 ----

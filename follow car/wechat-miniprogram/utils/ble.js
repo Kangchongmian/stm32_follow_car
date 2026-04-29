@@ -43,7 +43,8 @@ const PARAM_INDEX = {
   PID_DIST_KD:             12,
   PID_ANGLE_KP:            13,
   PID_ANGLE_KI:            14,
-  PID_ANGLE_KD:            15
+  PID_ANGLE_KD:            15,
+  MAX_FOLLOW_SPEED:        16
 };
 
 /**
