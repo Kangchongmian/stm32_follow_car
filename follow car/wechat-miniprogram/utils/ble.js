@@ -105,7 +105,7 @@ function parseFrame(buffer) {
   if (bytes.length < 4 || bytes[0] !== 0xAA) return null;
   const cmd = bytes[1];
   const len = bytes[2];
-  if (bytes.length < 3 + len + 1) return null;
+  if (bytes.length !== 3 + len + 1) return null;
   const cs = checksum(bytes.slice(0, 3 + len));
   if (cs !== bytes[3 + len]) return null;
   const data = bytes.slice(3, 3 + len);

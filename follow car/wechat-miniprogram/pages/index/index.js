@@ -214,7 +214,7 @@ Page({
           s.uuid.toUpperCase().indexOf('FFE0') >= 0
         );
         if (!svc) {
-          this.setData({ bleState: 'failed', bleStateText: '未找到JDY-31服务' });
+          this.setData({ bleState: 'failed', bleStateText: '未找到JDY-33服务' });
           return;
         }
         this._serviceId = svc.uuid;
