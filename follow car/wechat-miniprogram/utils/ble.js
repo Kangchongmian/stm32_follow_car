@@ -35,7 +35,16 @@ const PARAM_INDEX = {
   MOTOR_TURN_SPEED:       4,
   MOTOR_SLOW_SPEED:       5,
   UWB_TIMEOUT_MS:         6,
-  ULTRASONIC_POLL_MS:     7
+  ULTRASONIC_POLL_MS:     7,
+  UWB_ANGLE_TOLERANCE_DEG: 8,
+  EMERGENCY_STOP_DIST_CM:  9,
+  PID_DIST_KP:             10,
+  PID_DIST_KI:             11,
+  PID_DIST_KD:             12,
+  PID_ANGLE_KP:            13,
+  PID_ANGLE_KI:            14,
+  PID_ANGLE_KD:            15,
+  MAX_FOLLOW_SPEED:        16
 };
 
 /**
@@ -105,7 +114,7 @@ function parseFrame(buffer) {
   if (bytes.length < 4 || bytes[0] !== 0xAA) return null;
   const cmd = bytes[1];
   const len = bytes[2];
-  if (bytes.length < 3 + len + 1) return null;
+  if (bytes.length !== 3 + len + 1) return null;
   const cs = checksum(bytes.slice(0, 3 + len));
   if (cs !== bytes[3 + len]) return null;
   const data = bytes.slice(3, 3 + len);

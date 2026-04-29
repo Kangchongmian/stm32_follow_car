@@ -26,6 +26,7 @@ typedef struct {
     float pid_angle_kp;             /* 角度PID Kp             默认 4    */
     float pid_angle_ki;             /* 角度PID Ki             默认 0.3  */
     float pid_angle_kd;             /* 角度PID Kd             默认 1.5  */
+    float max_follow_speed;         /* 最大跟随速度 0-666      默认 500  */
 } CarParams_t;
 
 extern CarParams_t g_car_params;
@@ -49,6 +50,7 @@ extern CarParams_t g_car_params;
 #define DEFAULT_PID_ANGLE_KP    4.0f     /* 角度PID比例 */
 #define DEFAULT_PID_ANGLE_KI    0.3f     /* 角度PID积分 */
 #define DEFAULT_PID_ANGLE_KD    1.5f     /* 角度PID微分 */
+#define DEFAULT_MAX_FOLLOW_SPEED 500.0f  /* 最大跟随速度 */
 
 /* ============ LED引脚 ============ */
 #define LED_BLUE_PIN            GPIO_PIN_4

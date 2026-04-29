@@ -32,6 +32,7 @@
  *   13 pid_angle_kp
  *   14 pid_angle_ki
  *   15 pid_angle_kd
+ *   16 max_follow_speed
  */
 
 #define BLE_FRAME_HEAD      0xAA
@@ -40,7 +41,7 @@
 #define BLE_CMD_READ_PARAM  0x03
 #define BLE_CMD_PARAM_ACK   0x04
 
-#define BLE_PARAM_COUNT     16
+#define BLE_PARAM_COUNT     17
 
 #define BLE_RX_BUF_SIZE     64
 

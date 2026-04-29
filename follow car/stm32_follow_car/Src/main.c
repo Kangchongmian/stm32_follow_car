@@ -55,6 +55,7 @@ static void CarParams_InitDefaults(void)
     g_car_params.pid_angle_kp            = DEFAULT_PID_ANGLE_KP;
     g_car_params.pid_angle_ki            = DEFAULT_PID_ANGLE_KI;
     g_car_params.pid_angle_kd            = DEFAULT_PID_ANGLE_KD;
+    g_car_params.max_follow_speed        = DEFAULT_MAX_FOLLOW_SPEED;
 }
 
 /* ========== 主函数 ========== */

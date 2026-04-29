@@ -1,5 +1,6 @@
 <!--pages/index/index.wxml-->
-<view class="container">
+<page-meta page-style="{{activeTab === 'control' ? 'overflow: hidden;' : 'overflow: visible;'}}"></page-meta>
+<view class="container {{activeTab === 'control' ? 'control-mode' : ''}}">
 
   <!-- ======== 蓝牙状态区 ======== -->
   <view class="section ble-section">
@@ -44,8 +45,20 @@
     </view>
   </view>
 
+  <!-- ======== 分页切换 ======== -->
+  <view class="section pager-section">
+    <view class="pager-tabs">
+      <view class="pager-tab {{activeTab === 'control' ? 'pager-tab-active' : ''}}" data-tab="control" bindtap="onSwitchTab">
+        方向控制页
+      </view>
+      <view class="pager-tab {{activeTab === 'params' ? 'pager-tab-active' : ''}}" data-tab="params" bindtap="onSwitchTab">
+        参数设置页
+      </view>
+    </view>
+  </view>
+
   <!-- ======== 摇杆控制区 ======== -->
-  <view class="section control-section">
+  <view wx:if="{{activeTab === 'control'}}" class="section control-section" catchtouchmove="noop">
     <view class="section-title">方向控制</view>
     <view class="joystick-wrap">
       <view class="joystick-base" id="joystickBase"
@@ -66,7 +79,7 @@
   </view>
 
   <!-- ======== 参数设置区 ======== -->
-  <view class="section param-section">
+  <view wx:if="{{activeTab === 'params'}}" class="section param-section">
     <view class="section-header">
       <view class="section-title">参数设置</view>
       <button class="btn btn-small btn-primary" bindtap="onSendAllParams">全部下发</button>
@@ -85,6 +98,7 @@
                 backgroundColor="#2a2a3e"
                 block-size="20"
                 data-idx="{{index}}"
+                bindchanging="onParamChanging"
                 bindchange="onParamChange" />
         <view class="param-bottom">
           <text class="param-range">{{item.min}} ~ {{item.max}}</text>
