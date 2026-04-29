@@ -3,6 +3,8 @@ const ble = require('../../utils/ble.js');
 
 Page({
   data: {
+    activeTab: 'control', // control | params
+
     // ---- 蓝牙状态 ----
     bleState: 'idle',        // idle | scanning | found | connecting | connected | failed
     bleStateText: '未连接',
@@ -50,6 +52,17 @@ Page({
   onUnload() {
     this._closeBLE();
   },
+
+  onSwitchTab(e) {
+    const tab = e.currentTarget.dataset.tab;
+    if (!tab || tab === this.data.activeTab) return;
+    this.setData({ activeTab: tab });
+    if (tab === 'control') {
+      setTimeout(() => this._initJoystick(), 50);
+    }
+  },
+
+  noop() {},
 
   // =============== 蓝牙流程 ===============
   onTapConnect() {
