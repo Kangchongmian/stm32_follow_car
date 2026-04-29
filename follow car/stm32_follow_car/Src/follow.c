@@ -220,6 +220,7 @@ void Follow_Update(void)
 {
     uint32_t now = HAL_GetTick();
     static uint32_t last_tick = 0;
+    static float angle_error_filt = 0.0f;
     float dt = (float)(now - last_tick) / 1000.0f;  /* 秒 */
     if (dt > 0.5f) dt = 0.02f;  /* 首次或超长间隔, 用默认值 */
     last_tick = now;
@@ -438,9 +439,27 @@ void Follow_Update(void)
         int16_t speed = (int16_t)speed_f;
         if (speed < 0) speed = 0;
 
+        /* 角度误差低通滤波，抑制UWB角度抖动 */
+        float raw_angle_error = (float)uwb_data.angle_deg;
+        const float angle_alpha = 0.25f;
+        angle_error_filt += angle_alpha * (raw_angle_error - angle_error_filt);
+        float angle_error = angle_error_filt;
+
+        /* 控制死区：小角度偏差不做方向修正 */
+        float tolerance = g_car_params.uwb_angle_tolerance_deg;
+        if (angle_error > -tolerance && angle_error < tolerance) {
+            angle_error = 0.0f;
+        }
+
+        /* 小误差区域关闭D项，避免微分放大噪声导致左右来回修正 */
+        float angle_kd_saved = pid_angle.Kd;
+        if (angle_error > -2.0f * tolerance && angle_error < 2.0f * tolerance) {
+            pid_angle.Kd = 0.0f;
+        }
+
         /* 角度PID: 误差 = 角度值 (正=偏左需左转, 负=偏右需右转) */
-        float angle_error = (float)uwb_data.angle_deg;
         float diff_f = PID_Compute(&pid_angle, angle_error, dt);
+        pid_angle.Kd = angle_kd_saved;
         /* diff > 0 表示要左转 -> 减左轮; diff < 0 表示要右转 -> 减右轮 */
         int16_t left_target  = speed - (int16_t)diff_f;
         int16_t right_target = speed + (int16_t)diff_f;
@@ -455,7 +474,6 @@ void Follow_Update(void)
         Motor_SmoothDiff(left_target, right_target);
 
         /* 转向灯: 跟随中根据角度纠偏方向 */
-        float tolerance = g_car_params.uwb_angle_tolerance_deg;
         if (angle_error > tolerance)       TurnSignal_Set(TURN_LEFT);
         else if (angle_error < -tolerance) TurnSignal_Set(TURN_RIGHT);
         else                               TurnSignal_Set(TURN_NONE);
