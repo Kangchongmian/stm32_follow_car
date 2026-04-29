@@ -98,6 +98,7 @@
                 backgroundColor="#2a2a3e"
                 block-size="20"
                 data-idx="{{index}}"
+                bindchanging="onParamChanging"
                 bindchange="onParamChange" />
         <view class="param-bottom">
           <text class="param-range">{{item.min}} ~ {{item.max}}</text>

@@ -356,6 +356,14 @@ Page({
     this.setData({ params });
   },
 
+  onParamChanging(e) {
+    const idx = e.currentTarget.dataset.idx;
+    const val = parseFloat(e.detail.value);
+    const params = this.data.params.slice();
+    params[idx].value = val;
+    this.setData({ params });
+  },
+
   onParamConfirm(e) {
     const idx = parseInt(e.currentTarget.dataset.idx);
     const param = this.data.params[idx];
