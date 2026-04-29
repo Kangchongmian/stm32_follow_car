@@ -230,11 +230,14 @@ void Follow_Update(void)
     uint16_t estop_cm     = (uint16_t)g_car_params.emergency_stop_dist_cm;
     uint16_t turn_spd     = (uint16_t)g_car_params.motor_turn_speed;
     uint16_t slow_spd     = (uint16_t)g_car_params.motor_slow_speed;
+    uint16_t max_follow_spd = (uint16_t)g_car_params.max_follow_speed;
+    if (max_follow_spd > 666) max_follow_spd = 666;
 
     /* 实时更新PID增益 (蓝牙可调) */
     pid_dist.Kp  = g_car_params.pid_dist_kp;
     pid_dist.Ki  = g_car_params.pid_dist_ki;
     pid_dist.Kd  = g_car_params.pid_dist_kd;
+    pid_dist.out_max = (float)max_follow_spd;
     pid_angle.Kp = g_car_params.pid_angle_kp;
     pid_angle.Ki = g_car_params.pid_angle_ki;
     pid_angle.Kd = g_car_params.pid_angle_kd;
@@ -445,8 +448,8 @@ void Follow_Update(void)
         /* 限幅 */
         if (left_target < 0)    left_target = 0;
         if (right_target < 0)   right_target = 0;
-        if (left_target > 666)  left_target = 666;
-        if (right_target > 666) right_target = 666;
+        if (left_target > (int16_t)max_follow_spd)  left_target = (int16_t)max_follow_spd;
+        if (right_target > (int16_t)max_follow_spd) right_target = (int16_t)max_follow_spd;
 
         /* 平滑输出 */
         Motor_SmoothDiff(left_target, right_target);
