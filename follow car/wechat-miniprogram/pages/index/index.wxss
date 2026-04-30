@@ -4,6 +4,12 @@
   padding: 20rpx 24rpx 60rpx;
 }
 
+.container.control-mode {
+  height: 100vh;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
 /* ---- 通用 ---- */
 .section {
   background: #1a1a2e;
@@ -172,11 +178,39 @@
   gap: 20rpx;
 }
 
+/* ---- 分页切换 ---- */
+.pager-section {
+  padding: 16rpx;
+}
+
+.pager-tabs {
+  display: flex;
+  background: #16213e;
+  border-radius: 14rpx;
+  overflow: hidden;
+}
+
+.pager-tab {
+  flex: 1;
+  text-align: center;
+  padding: 16rpx 8rpx;
+  font-size: 26rpx;
+  color: #90a4ae;
+}
+
+.pager-tab-active {
+  color: #0f0f1a;
+  font-weight: 600;
+  background: #4fc3f7;
+}
+
 /* ---- 摇杆控制 ---- */
 .joystick-wrap {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  min-height: 520rpx;
 }
 
 .joystick-base {

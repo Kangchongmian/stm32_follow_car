@@ -2,7 +2,7 @@
  * oled.c - 0.96寸 SSD1306 OLED显示驱动 (I2C1, PB8/PB9)
  *
  * 显示内容:
- *   第0行: UWB距离
+ *   第0行: UWB距离 + 角度
  *   第2行: 前方障碍物距离 (超声波)
  *   第4行: 雷达障碍物距离
  *   第6行: 运行状态
@@ -180,11 +180,11 @@ void OLED_ShowFloat(uint8_t x, uint8_t y, float val, uint8_t decimals)
 }
 
 /* 综合显示更新 */
-void OLED_Update(float uwb_dist, uint16_t front_obs, uint16_t lidar_obs)
+void OLED_Update(float uwb_dist, int16_t uwb_angle_deg, uint16_t front_obs, uint16_t lidar_obs)
 {
     char line[22];
 
-    snprintf(line, sizeof(line), "UWB: %.2fm   ", uwb_dist);
+    snprintf(line, sizeof(line), "U:%.2fm A:%+3d", uwb_dist, uwb_angle_deg);
     OLED_ShowString(0, 0, line);
 
     snprintf(line, sizeof(line), "US.F:%4ucm  ", front_obs);
