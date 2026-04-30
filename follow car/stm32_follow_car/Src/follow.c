@@ -289,7 +289,7 @@ void Follow_Update(void)
         PID_Reset(&pid_angle);
 
         uint16_t front_obs = get_front_obstacle_cm();
-        OLED_Update(0.0f, front_obs,
+        OLED_Update(0.0f, 0, front_obs,
                     lidar_data.valid ? lidar_data.front_min_dist_mm : 0xFFFF);
         OLED_ShowString(0, 6, "NO UWB DATA ");
         return;
@@ -308,7 +308,7 @@ void Follow_Update(void)
         PID_Reset(&pid_angle);
 
         uint16_t front_obs = get_front_obstacle_cm();
-        OLED_Update(dist, front_obs,
+        OLED_Update(dist, uwb_data.angle_deg, front_obs,
                     lidar_data.valid ? lidar_data.front_min_dist_mm : 0xFFFF);
         OLED_ShowString(0, 6, "IN RANGE    ");
         return;
@@ -326,7 +326,7 @@ void Follow_Update(void)
     static uint32_t oled_last = 0;
     if (now - oled_last > 200) {
         oled_last = now;
-        OLED_Update(dist, front_obs,
+        OLED_Update(dist, uwb_data.angle_deg, front_obs,
                     lidar_data.valid ? lidar_data.front_min_dist_mm : 0xFFFF);
     }
 
