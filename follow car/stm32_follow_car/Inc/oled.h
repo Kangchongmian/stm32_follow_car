@@ -9,6 +9,6 @@ void OLED_Init(void);
 void OLED_Clear(void);
 void OLED_ShowString(uint8_t x, uint8_t y, const char *str);
 void OLED_ShowFloat(uint8_t x, uint8_t y, float val, uint8_t decimals);
-void OLED_Update(float uwb_dist, uint16_t front_obs, uint16_t lidar_obs);
+void OLED_Update(float uwb_dist, int16_t uwb_angle_deg, uint16_t front_obs, uint16_t lidar_obs);
 
 #endif

@@ -53,8 +53,14 @@ static bool parse_binary_frame(uint8_t *buf, uint16_t len)
     uint16_t dist_cm = (uint16_t)(buf[4] | (buf[5] << 8));
     if (dist_cm == 0 || dist_cm > 5000) return false; /* 过滤无效值, 最大50m */
 
-    /* 角度: buf[6..7] 小端 int16, 单位 度 (正=左, 负=右) */
+    /*
+     * 角度: buf[6..7] 小端 int16, 单位 度
+     * 归一化到 [-180, +180]:
+     *   正前方 0, 左侧 0~180, 右侧 -180~0, 正后方 ±180
+     */
     int16_t angle = (int16_t)(buf[6] | (buf[7] << 8));
+    while (angle > 180)  angle -= 360;
+    while (angle < -180) angle += 360;
 
     /* 距离转米 */
     float dist_m = (float)dist_cm / 100.0f;
