@@ -216,3 +216,13 @@
 - [ ] 轮罩、侧护板、线束是否与轮胎保持 ≥20 mm 间隙。
 - [ ] 急停按钮、人机指示灯、遥控接收器是否外部可触达/可视。
 - [ ] 雷达/UWB 是否高于货物遮挡区域；若载货高于 540，应另加传感器杆。
+
+## 14. SolidWorks 装配体生成
+
+仓库新增了 SolidWorks VBA 宏：[`cad/solidworks/FOLO100_GenerateAssembly.bas`](../cad/solidworks/FOLO100_GenerateAssembly.bas)。在 SolidWorks 中运行该宏后，会自动生成简化零件和装配体：
+
+```text
+%USERPROFILE%\Documents\FOLO100_SolidWorks\FOLO100_Automatic_Follow_Cart.SLDASM
+```
+
+该装配体用于总体布局、空间占用、传感器安装位置和车体包络校核；由于 `.SLDASM/.SLDPRT` 是 SolidWorks 专有二进制格式，需在 SolidWorks 环境中运行宏才能生成真实装配体文件。详细运行步骤见 [`cad/solidworks/README.md`](../cad/solidworks/README.md)。
