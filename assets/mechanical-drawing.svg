@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1100" viewBox="0 0 1600 1100">
+  <defs>
+    <style>
+      .title{font:700 28px Arial,'Microsoft YaHei',sans-serif;fill:#111}.sub{font:16px Arial,'Microsoft YaHei',sans-serif;fill:#333}.label{font:13px Arial,'Microsoft YaHei',sans-serif;fill:#111}.small{font:11px Arial,'Microsoft YaHei',sans-serif;fill:#111}.dim{font:12px Arial,'Microsoft YaHei',sans-serif;fill:#0b5394}.note{font:12px Arial,'Microsoft YaHei',sans-serif;fill:#444}.body{fill:#f7f7f7;stroke:#111;stroke-width:2}.platform{fill:#eaf2f8;stroke:#1155cc;stroke-width:2}.frame{fill:#eee;stroke:#555;stroke-width:2}.cut{fill:#fff;stroke:#cc0000;stroke-width:1.7}.motor{fill:#fce5cd;stroke:#b45f06;stroke-width:2}.wheel{fill:#d9d9d9;stroke:#333;stroke-width:2}.caster{fill:#eadcf8;stroke:#674ea7;stroke-width:2}.sensor{fill:#d9ead3;stroke:#38761d;stroke-width:2}.bumper{fill:#ffe599;stroke:#bf9000;stroke-width:2}.battery{fill:#eadcf8;stroke:#674ea7;stroke-width:2}.box{fill:#d9eaf7;stroke:#1155cc;stroke-width:2}.center{stroke:#666;stroke-width:1;stroke-dasharray:7 5}.thin{stroke:#555;stroke-width:1;fill:none}.dimline{stroke:#0b5394;stroke-width:1.4;marker-start:url(#arrow);marker-end:url(#arrow)}
+    </style>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#0b5394"/></marker>
+  </defs>
+  <rect width="1600" height="1100" fill="#fff"/>
+  <text x="36" y="42" class="title">FOLO-100 自动跟随车机械图纸（详细参考版）</text>
+  <text x="36" y="70" class="sub">单位：mm；公开参数：整车 860×600×540、平台 700×540×405、100kg 载重、12英寸充气轮、双轮差速/原地转向</text>
+
+  <!-- A Top assembly, scale 0.55 px/mm, center 300,300 -->
+  <text x="40" y="110" class="sub">A. 整车俯视总装图（最大包络 860 × 600）</text>
+  <g transform="translate(300 300) scale(0.55 -0.55)">
+    <rect class="body" x="-430" y="-300" width="860" height="600" rx="42"/>
+    <rect class="platform" x="-350" y="-270" width="700" height="540" rx="10"/>
+    <rect class="bumper" x="405" y="-280" width="35" height="560" rx="18"/>
+    <rect class="bumper" x="-440" y="-280" width="35" height="560" rx="18"/>
+    <line class="center" x1="-450" x2="450" y1="0" y2="0"/><line class="center" x1="0" x2="0" y1="-320" y2="320"/>
+    <rect class="wheel" x="-55" y="207.5" width="110" height="75" rx="18"/><rect class="wheel" x="-55" y="-282.5" width="110" height="75" rx="18"/>
+    <circle class="caster" cx="300" cy="210" r="42"/><circle class="caster" cx="300" cy="-210" r="42"/><circle class="caster" cx="-300" cy="210" r="42"/><circle class="caster" cx="-300" cy="-210" r="42"/>
+    <rect class="battery" x="-180" y="-95" width="360" height="190" rx="8"/>
+    <rect class="box" x="-350" y="-80" width="220" height="160" rx="8"/>
+    <rect class="sensor" x="330" y="-40" width="80" height="80" rx="8"/>
+    <circle class="sensor" cx="420" cy="170" r="25"/><circle class="sensor" cx="420" cy="-170" r="25"/>
+    <circle class="cut" cx="330" cy="-220" r="18"/><circle class="cut" cx="330" cy="220" r="12"/>
+    <rect class="thin" x="-380" y="-260" width="760" height="520"/>
+    <rect class="frame" x="-380" y="190" width="760" height="40"/><rect class="frame" x="-380" y="-230" width="760" height="40"/><rect class="frame" x="-360" y="-260" width="40" height="520"/><rect class="frame" x="320" y="-260" width="40" height="520"/>
+  </g>
+  <line class="dimline" x1="63" y1="480" x2="536" y2="480"/><text x="287" y="499" class="dim">860</text>
+  <line class="dimline" x1="548" y1="465" x2="548" y2="135"/><text x="556" y="305" class="dim">600</text>
+  <text x="165" y="304" class="label">控制箱</text><text x="263" y="304" class="label">电池仓 360×190</text><text x="500" y="302" class="label">前雷达/传感器</text><text x="267" y="151" class="label">平台 700×540</text>
+
+  <!-- B Chassis hole drawing -->
+  <text x="620" y="110" class="sub">B. 下底盘开孔图（Z=235 平面）</text>
+  <g transform="translate(930 300) scale(0.55 -0.55)">
+    <rect class="thin" x="-380" y="-260" width="760" height="520"/>
+    <rect class="frame" x="-380" y="190" width="760" height="40"/><rect class="frame" x="-380" y="-230" width="760" height="40"/><rect class="frame" x="-360" y="-260" width="40" height="520"/><rect class="frame" x="320" y="-260" width="40" height="520"/>
+    <rect class="motor" x="-90" y="210" width="180" height="70" rx="6"/><rect class="motor" x="-90" y="-280" width="180" height="70" rx="6"/>
+    <rect class="cut" x="-65" y="238" width="80" height="16" rx="8"/><rect class="cut" x="35" y="238" width="80" height="16" rx="8"/><rect class="cut" x="-65" y="-254" width="80" height="16" rx="8"/><rect class="cut" x="35" y="-254" width="80" height="16" rx="8"/>
+    <g class="cut"><circle cx="300" cy="210" r="8"/><circle cx="340" cy="210" r="8"/><circle cx="300" cy="250" r="8"/><circle cx="340" cy="250" r="8"/><circle cx="300" cy="-210" r="8"/><circle cx="340" cy="-210" r="8"/><circle cx="300" cy="-250" r="8"/><circle cx="340" cy="-250" r="8"/><circle cx="-300" cy="210" r="8"/><circle cx="-340" cy="210" r="8"/><circle cx="-300" cy="250" r="8"/><circle cx="-340" cy="250" r="8"/><circle cx="-300" cy="-210" r="8"/><circle cx="-340" cy="-210" r="8"/><circle cx="-300" cy="-250" r="8"/><circle cx="-340" cy="-250" r="8"/></g>
+    <rect class="battery" x="-150" y="-80" width="300" height="160" rx="8"/><g class="cut"><circle cx="-150" cy="-80" r="6"/><circle cx="-150" cy="80" r="6"/><circle cx="150" cy="-80" r="6"/><circle cx="150" cy="80" r="6"/><circle cx="-50" cy="-80" r="6"/><circle cx="-50" cy="80" r="6"/><circle cx="50" cy="-80" r="6"/><circle cx="50" cy="80" r="6"/></g>
+    <rect class="box" x="-350" y="-70" width="220" height="140" rx="8"/><g class="cut"><circle cx="-350" cy="-70" r="5"/><circle cx="-350" cy="70" r="5"/><circle cx="-130" cy="-70" r="5"/><circle cx="-130" cy="70" r="5"/></g>
+    <line class="center" x1="-410" x2="410" y1="0" y2="0"/><line class="center" x1="0" x2="0" y1="-285" y2="285"/>
+  </g>
+  <line class="dimline" x1="721" y1="461" x2="1139" y2="461"/><text x="914" y="480" class="dim">760 骨架长度</text>
+  <line class="dimline" x1="1160" y1="443" x2="1160" y2="157"/><text x="1168" y="304" class="dim">520 骨架宽度</text>
+  <text x="770" y="304" class="label">控制箱孔 220×140</text><text x="886" y="304" class="label">电池托盘孔 300×160</text><text x="935" y="151" class="label">驱动电机安装板/长圆孔</text>
+
+  <!-- C Side view -->
+  <text x="40" y="565" class="sub">C. 侧视高度图（整车高度 540，平台高度 405）</text>
+  <g transform="translate(80 925)">
+    <rect class="body" x="0" y="-230" width="560" height="24" rx="4"/>
+    <rect class="platform" x="52" y="-405" width="456" height="18" rx="4"/>
+    <rect class="bumper" x="552" y="-210" width="24" height="70" rx="10"/><rect class="bumper" x="-16" y="-210" width="24" height="70" rx="10"/>
+    <circle class="wheel" cx="280" cy="-152" r="99"/><circle class="caster" cx="476" cy="-100" r="65"/><circle class="caster" cx="84" cy="-100" r="65"/>
+    <rect class="battery" x="225" y="-340" width="160" height="75" rx="6"/><rect class="box" x="120" y="-335" width="120" height="70" rx="6"/>
+    <line class="thin" x1="508" y1="-405" x2="508" y2="-540"/><circle class="sensor" cx="508" cy="-520" r="18"/><rect class="sensor" x="492" y="-500" width="32" height="32" rx="4"/>
+    <line class="dimline" x1="600" y1="0" x2="600" y2="-540"/><text x="608" y="-265" class="dim">540 总高</text>
+    <line class="dimline" x1="635" y1="0" x2="635" y2="-405"/><text x="643" y="-198" class="dim">405 平台高</text>
+    <line class="dimline" x1="84" y1="30" x2="476" y2="30"/><text x="250" y="25" class="dim">600 轮组轴距</text>
+    <line class="dimline" x1="280" y1="-53" x2="280" y2="-251"/><text x="292" y="-145" class="dim">Ø305</text>
+    <text x="247" y="-262" class="label">12英寸驱动轮</text><text x="390" y="-342" class="label">电池低置</text><text x="485" y="-550" class="label">雷达/UWB</text>
+  </g>
+
+  <!-- D Front view -->
+  <text x="780" y="565" class="sub">D. 前视宽度图（最大宽度 600，平台宽度 540）</text>
+  <g transform="translate(815 925)">
+    <rect class="platform" x="30" y="-405" width="540" height="18" rx="4"/>
+    <rect class="body" x="0" y="-230" width="600" height="24" rx="4"/>
+    <circle class="wheel" cx="55" cy="-152" r="99"/><circle class="wheel" cx="545" cy="-152" r="99"/>
+    <rect class="bumper" x="12" y="-210" width="576" height="35" rx="14"/>
+    <rect class="sensor" x="255" y="-530" width="90" height="45" rx="6"/><circle class="sensor" cx="210" cy="-250" r="20"/><circle class="sensor" cx="390" cy="-250" r="20"/>
+    <line class="center" x1="300" y1="-550" x2="300" y2="0"/>
+    <line class="dimline" x1="0" y1="30" x2="600" y2="30"/><text x="285" y="25" class="dim">600</text>
+    <line class="dimline" x1="30" y1="-440" x2="570" y2="-440"/><text x="285" y="-445" class="dim">540 平台宽</text>
+    <line class="dimline" x1="55" y1="60" x2="545" y2="60"/><text x="265" y="55" class="dim">490 驱动轮距</text>
+    <text x="245" y="-555" class="label">顶部雷达/状态灯</text><text x="180" y="-275" class="label">前超声波/近距避障</text>
+  </g>
+
+  <!-- E detail blocks -->
+  <text x="40" y="1030" class="sub">E. 零件详图摘要：平台板 700×540×3，电机板 180×140×6，电池托盘 360×190×30，控制箱 ≥260×180×90；孔位详见 docs/mechanical-drawing.md。</text>
+  <text x="40" y="1055" class="note">红色为加工孔/槽，蓝色为平台/控制箱，紫色为电池/辅助轮，橙色为驱动模块，黄色为防撞条，绿色为传感器。批量加工前按实物复核。</text>
+</svg>
